@@ -1,21 +1,30 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import InicioAdmin from './components/InicioAdmin'
-import Login from './components/Login'
-import './css/login.css'
 import { useSelector } from 'react-redux'
+import LoginPages from './pages/LoginPages'
+import InicioAdminPage from './pages/InicioAdminPage'
+import { useState } from 'react'
+import GestionAdminPage from './pages/GestionAdminPage'
+import Header from './components/NavBar/Header'
+import ProtectRoute from './components/ProtectRoute'
 
 
 function App() {
 
-  const logout = () => setusers(null)
+  const [users, setusers] = useState([])
 
   return (
     <BrowserRouter>
-
     <Routes>
-      <Route path='/login' element={<Login/>} />
-      <Route path='/inicioAdmin' element={<InicioAdmin/>} />
+      <Route path='/login' element={<LoginPages users={users} setusers={setusers}/>} />
+
+                            {/*Rutas Protegidas*/}
+      <Route element={<ProtectRoute users={users}/>}> 
+      <Route path='/inicioAdmin' element={<InicioAdminPage users={users} setusers={setusers} redirectTo="/login"/>}/>
+      <Route path='/gestionAdmin' element={<GestionAdminPage users={users} setusers={setusers}/>}/>
+      </Route>
+                            {/*Rutas Protegidas*/}  
+
     </Routes>
 
     </BrowserRouter>

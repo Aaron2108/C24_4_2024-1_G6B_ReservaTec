@@ -1,0 +1,27 @@
+.section_gestion_reservas{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    color: black;
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+}
+.img_gestion{
+    max-width: 15%;
+    height: 100%;
+}
+.section2_gestion_reservas{
+    width: 100%;
+    height: auto;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    margin-top: 10px;
+}
+.img_crear_reserva,.eliminar_reserva {
+    max-width: 50%;
+    max-height: 50%;
+}
