@@ -11,17 +11,47 @@
     max-width: 15%;
     height: 100%;
 }
+.img_crear_reserva,.eliminar_reserva {
+    width: 450px;
+    height: 250px;
+}
 .section2_gestion_reservas{
     width: 100%;
     height: auto;
     display: flex;
+    flex-wrap: wrap;
     text-align: center;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     color: black;
     margin-top: 10px;
+    
 }
-.img_crear_reserva,.eliminar_reserva {
-    max-width: 50%;
-    max-height: 50%;
+.article_gestion_reservas{
+    width: auto;
+    height: 100%;
+    margin: 10px;
+    position: relative;
+    box-sizing: border-box;
 }
+.section_campos{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white ;
+    font-size: bold;
+    position: absolute;
+    text-align: center;
+    bottom: 7px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.section_campos h2{
+    text-decoration: underline;
+}
+

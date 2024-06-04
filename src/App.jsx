@@ -5,8 +5,9 @@ import LoginPages from './pages/LoginPages'
 import InicioAdminPage from './pages/InicioAdminPage'
 import { useState } from 'react'
 import GestionAdminPage from './pages/GestionAdminPage'
-import Header from './components/NavBar/Header'
 import ProtectRoute from './components/ProtectRoute'
+import GestionHorarioPage from './pages/GestionHorarioPage'
+import CrearHorarioPage from './pages/CrearHorarioPage'
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
       <Route element={<ProtectRoute users={users}/>}> 
       <Route path='/inicioAdmin' element={<InicioAdminPage users={users} setusers={setusers} redirectTo="/login"/>}/>
       <Route path='/gestionAdmin' element={<GestionAdminPage users={users} setusers={setusers}/>}/>
+      <Route path='/gestionHorario' element={<GestionHorarioPage users={users} setusers={setusers}/>}/>
+      <Route path='/crearHorario' element={<CrearHorarioPage users={users} setusers={setusers}/>}/>
       </Route>
                             {/*Rutas Protegidas*/}  
 

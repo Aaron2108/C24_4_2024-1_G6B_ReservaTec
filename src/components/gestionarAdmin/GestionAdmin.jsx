@@ -1,19 +1,24 @@
+import { useNavigate } from "react-router-dom";
 import Header from "../NavBar/Header"
 import '../gestionarAdmin/gestion.css';
+
+
 const GestionAdmin = ({users, setusers}) => {
+  const navigate = useNavigate()
+  const gestionHorario = () =>{
+    navigate("/gestionHorario")
+  }
+
   return (
     <div className="div_inicio_Admin">
         <Header users={users} setusers={setusers}/>
-
-
-
       <section className="section_gestion_reservas">
         <img className="img_gestion" src="/img/reservaInicioAdmin.png" alt="" />
         <h2 className="h2_gestion">Gestionar Reservas</h2>
       </section>
       
       <section className="section2_gestion_reservas">
-        <article>
+        <article onClick={gestionHorario}>
             <img className="img_crear_reserva" src="/img/crear_reserva.png" alt="" />
             <h2>Crear Horario</h2>
         </article>
