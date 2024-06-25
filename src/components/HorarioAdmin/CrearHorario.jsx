@@ -16,7 +16,7 @@ const CrearHorario = ({ users, setUsers }) => {
       hora_inicio: dayjs(data.hora_inicio).format('HH:mm:ss'),
       hora_fin: dayjs(data.hora_fin).format('HH:mm:ss')
     }
-    console.log(formatData);
+
     const url = "http://127.0.0.1:8000/api/horarios/"
     axios.post(url, formatData)
     .then(res => console.log(res))
@@ -36,7 +36,10 @@ const CrearHorario = ({ users, setUsers }) => {
   };
 
   const handleDelete = (index) => {
-    console.log("Eliminar horario en posición:", index);
+    const urlDeleteHorarios = `http://127.0.0.1:8000/api/horarios/${index}/`
+    axios.delete(urlDeleteHorarios)
+    .then(res => console.log(res.data))
+    .catch(err => console.log(err))
   };
 
   return (
@@ -116,8 +119,8 @@ const CrearHorario = ({ users, setUsers }) => {
               <td className="align-middle text-center">{item.hora_inicio}</td>
               <td className="align-middle text-center">{item.hora_fin}</td>
               <td className="align-middle text-center w-auto">
-                <button className="btn btn-secondary me-2" onClick={() => handleEdit(index)}>Editar</button>
-                <button className="btn btn-danger" onClick={() => handleDelete(index)}>Eliminar</button>
+                <button className="btn btn-secondary me-2" onClick={() => handleEdit(item.id)}>Editar</button>
+                <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>Eliminar</button>
               </td>
             </tr>
           ))}
@@ -126,12 +129,6 @@ const CrearHorario = ({ users, setUsers }) => {
     </div>
   </div>
 </article>
-
-
-
-
-
-
       </div>
   );
 };

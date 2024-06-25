@@ -26,14 +26,16 @@ const Login = ({setusers}) => {
         // .then(res => console.log(res))
         // .catch(error => console.log(error));
     }, []);
+    
 
     const onSuccess = (response) => {
         if (response.profileObj.email.endsWith("@tecsup.edu.pe")) {
-            setusers(response.profileObj);
-            console.log(response.profileObj);
             
-            const token = response.tokenId;
-            console.log("Token ID:", token);
+            window.localStorage.setItem('loginAdminUser', JSON.stringify(response.profileObj));
+
+            
+            // const token = response.tokenId;
+            // console.log("Token ID:", token);
            // dispatch(addUser(response.profileObj));  Añadir el usuario al estado Redux
             navigate("/inicioAdmin")
         } else {
@@ -52,7 +54,13 @@ const Login = ({setusers}) => {
         console.log("Something went wrong");
     };
 
-
+    useEffect(() => {
+        const loggedUserJSON = window.localStorage.getItem('loginAdminUser')
+        if(loggedUserJSON){
+          const userLocal = JSON.parse(loggedUserJSON);
+          setusers(userLocal);
+        }
+    }, [])
     return (
         <div className="div_login">
             <header className="header_login">

@@ -2,9 +2,11 @@ import { useNavigate } from "react-router-dom"
 
 const Header = ({users, setusers}) => {
   const navigate = useNavigate()
+
   const handleLogout = () => {
-    setusers(null)
+    
     navigate("/login")
+    window.localStorage.removeItem('loginAdminUser')
   }
     
   return (
@@ -14,7 +16,7 @@ const Header = ({users, setusers}) => {
     </header>
     <section className="section_inicio_Admin">
     <article className="article_inicio_admin">
-      <img className="img_inicioAdmin" src={users.imageUrl} alt="" />
+    <img className="img_inicioAdmin" src={users?.imageUrl} alt="" />
       <h1>{users && users.name}</h1>
       <h2 className="h2_inicio_admin">{users && users.email}</h2>
     </article>

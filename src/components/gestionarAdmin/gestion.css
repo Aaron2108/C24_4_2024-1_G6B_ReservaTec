@@ -12,8 +12,8 @@
     height: 100%;
 }
 .img_crear_reserva,.eliminar_reserva {
-    width: 450px;
-    height: 250px;
+    max-width: 450px;
+    max-height: 250px;
 }
 .section2_gestion_reservas{
     width: 100%;

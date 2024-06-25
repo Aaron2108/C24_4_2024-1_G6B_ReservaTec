@@ -5,19 +5,17 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const InicioAdmin = ({users, setusers}) => {
-  // Obtener el estado del usuario usando useSelector
-  // const user = useSelector(state => state.user);
-
-  // useEffect(() => {
-  //   if (users) {
-  //     console.log(users);
-  //   }
-  // }, [users]);
   const navigate = useNavigate()
   const onGestionReserva = () => {
     navigate("/gestionAdmin")
   }
-
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loginAdminUser')
+    if(loggedUserJSON){
+      const userLocal = JSON.parse(loggedUserJSON);
+      setusers(userLocal);
+    }
+}, [])
   return (
     <div className="div_inicio_Admin">
       <Header users={users} setusers={setusers} />

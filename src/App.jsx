@@ -3,7 +3,7 @@ import './App.css'
 import { useSelector } from 'react-redux'
 import LoginPages from './pages/LoginPages'
 import InicioAdminPage from './pages/InicioAdminPage'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import GestionAdminPage from './pages/GestionAdminPage'
 import ProtectRoute from './components/ProtectRoute'
 import GestionHorarioPage from './pages/GestionHorarioPage'
@@ -12,8 +12,16 @@ import CrearHorarioPage from './pages/CrearHorarioPage'
 
 function App() {
 
-  const [users, setusers] = useState([])
+  const [users, setusers] = useState(null)
 
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem('loginAdminUser')
+    if(loggedUserJSON){
+      const userLocal = JSON.parse(loggedUserJSON);
+      setusers(userLocal);
+      
+    }
+}, [])
   return (
     <BrowserRouter>
     <Routes>
