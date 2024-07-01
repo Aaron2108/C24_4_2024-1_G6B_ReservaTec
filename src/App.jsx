@@ -8,6 +8,10 @@ import GestionAdminPage from './pages/GestionAdminPage'
 import ProtectRoute from './components/ProtectRoute'
 import GestionHorarioPage from './pages/GestionHorarioPage'
 import CrearHorarioPage from './pages/CrearHorarioPage'
+import GestionUsuarioPage from './pages/GestionUsuarioPage'
+import Loader from './components/LoaderC/Loader'
+import GestionCarreraPage from './pages/GestionCarreraPage'
+import GestionReservaPage from './pages/GestionReservaPage'
 
 
 function App() {
@@ -30,9 +34,25 @@ function App() {
                             {/*Rutas Protegidas*/}
       <Route element={<ProtectRoute users={users}/>}> 
       <Route path='/inicioAdmin' element={<InicioAdminPage users={users} setusers={setusers} redirectTo="/login"/>}/>
-      <Route path='/gestionAdmin' element={<GestionAdminPage users={users} setusers={setusers}/>}/>
-      <Route path='/gestionHorario' element={<GestionHorarioPage users={users} setusers={setusers}/>}/>
-      <Route path='/crearHorario' element={<CrearHorarioPage users={users} setusers={setusers}/>}/>
+
+      {/**Gestion de campos deportivos **/}
+      <Route path='/gestionCampos' element={<GestionHorarioPage users={users} setusers={setusers}/>}/>
+
+      {/** Gestion de horarios **/}
+      <Route path='/gestionHorarios' element={<CrearHorarioPage users={users} setusers={setusers}/>}/>
+
+      {/* Gestion Usuarios */}
+      <Route path='/gestionUsuarios' element={<GestionUsuarioPage users={users} setusers={setusers}/>}/>
+      
+
+      {/** Gestion Carreras **/}
+      <Route path='/gestionCarreras' element={<GestionCarreraPage users={users} setusers={setusers}/>}/>
+      
+      {/** Gestion Reservas **/}
+      <Route path='/gestionReserva' element={<GestionReservaPage users={users} setusers={setusers}/>}/>
+
+      <Route path='/loader' element={<Loader users={users} setusers={setusers}/>}/>
+
       </Route>
                             {/*Rutas Protegidas*/}  
 

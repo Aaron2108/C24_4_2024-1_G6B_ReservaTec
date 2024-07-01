@@ -5,44 +5,46 @@ import './horario.css';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import dayjs from 'dayjs';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import useFetchHorario from '../services/useFetchHorarios';
+import Loader from '../LoaderC/Loader';
 
 const CrearHorario = ({ users, setUsers }) => {
   const { control, handleSubmit } = useForm();
-
+  const navigate = useNavigate()
   const [dataHorarios, setDataHorarios] = useState([])
+  const [creacion, setCreacion] = useState(1)
+  const [getAllHorario , createHorario, updateHorario, deleteHorario,infoApiHorario, isLoading] =useFetchHorario()
 
   const submit = data => {
     const formatData = {
       hora_inicio: dayjs(data.hora_inicio).format('HH:mm:ss'),
       hora_fin: dayjs(data.hora_fin).format('HH:mm:ss')
     }
-
-    const url = "http://127.0.0.1:8000/api/horarios/"
-    axios.post(url, formatData)
-    .then(res => console.log(res))
-    .catch(err => console.log(err))
+    createHorario(formatData)
+    setCreacion(horas => horas + 1)
   };
 
 
   useEffect(() => {
-    const urlHorarios = "http://127.0.0.1:8000/api/horarios/"
-    axios.get(urlHorarios)
-    .then(res => setDataHorarios(res.data))
-    .catch(err => console.log(err))
-  }, [dataHorarios])
+    getAllHorario()
+
+  }, [creacion])
   
-  const handleEdit = (index) => {
-    console.log("Editar horario en posición:", index);
+
+  const handleDelete = (id) => {
+    deleteHorario(id)
+    setTimeout(() => {
+      setCreacion(suma => suma + 1);
+  }, 500);
+  
   };
 
-  const handleDelete = (index) => {
-    const urlDeleteHorarios = `http://127.0.0.1:8000/api/horarios/${index}/`
-    axios.delete(urlDeleteHorarios)
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err))
-  };
+  const inicio = () =>{
+    navigate("/inicioAdmin")
+  }
 
-  return (
+  return isLoading ? (<Loader/>) : (
       <div className="div_inicio_Admin">
         <Header users={users} setUsers={setUsers} />
         <section className="section_crear_horario">
@@ -114,13 +116,12 @@ const CrearHorario = ({ users, setUsers }) => {
           </tr>
         </thead>
         <tbody>
-          {dataHorarios.map((item, index) => (
+          {infoApiHorario?.map((item, index) => (
             <tr key={index}>
               <td className="align-middle text-center">{item.hora_inicio}</td>
               <td className="align-middle text-center">{item.hora_fin}</td>
               <td className="align-middle text-center w-auto">
-                <button className="btn btn-secondary me-2" onClick={() => handleEdit(item.id)}>Editar</button>
-                <button className="btn btn-danger" onClick={() => handleDelete(item.id)}>Eliminar</button>
+                <button className="btn btn-danger" onClick={() => handleDelete(item.pk_id_horario)}>Eliminar</button>
               </td>
             </tr>
           ))}

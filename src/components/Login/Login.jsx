@@ -12,9 +12,9 @@ import axios from "axios";
 const Login = ({setusers}) => {
     const clientID = "637437412249-1o07v7e7tqnbbs1sjhjachd9ltdlklfl.apps.googleusercontent.com"; 
     const navigate =useNavigate()
-    // const userState = useSelector(state => state.user);
-    // const dispatch = useDispatch();
     const [alertLogin, setAlertLogin] = useState(false);
+
+
     useEffect(() => {
         const start = () =>{
             gapi.auth.init({
@@ -22,9 +22,6 @@ const Login = ({setusers}) => {
             });
         };
         gapi.load("client:auth2", start);
-        // axios.get('http://127.0.0.1:8000/users/api/v1/users/')
-        // .then(res => console.log(res))
-        // .catch(error => console.log(error));
     }, []);
     
 
@@ -32,11 +29,6 @@ const Login = ({setusers}) => {
         if (response.profileObj.email.endsWith("@tecsup.edu.pe")) {
             
             window.localStorage.setItem('loginAdminUser', JSON.stringify(response.profileObj));
-
-            
-            // const token = response.tokenId;
-            // console.log("Token ID:", token);
-           // dispatch(addUser(response.profileObj));  Añadir el usuario al estado Redux
             navigate("/inicioAdmin")
         } else {
             console.log("Correo electrónico no válido.");
@@ -57,8 +49,8 @@ const Login = ({setusers}) => {
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loginAdminUser')
         if(loggedUserJSON){
-          const userLocal = JSON.parse(loggedUserJSON);
-          setusers(userLocal);
+            const userLocal = JSON.parse(loggedUserJSON);
+            setusers(userLocal);
         }
     }, [])
     return (

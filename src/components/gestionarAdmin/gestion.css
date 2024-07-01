@@ -2,10 +2,13 @@
     width: 100%;
     height: 100px;
     display: flex;
+    justify-content: space-between;
+    padding: 15px;
     color: black;
     text-align: center;
     align-items: center;
-    padding: 10px;
+    padding-top: 50px;
+    margin-bottom:50px;
 }
 .img_gestion{
     max-width: 15%;
@@ -44,7 +47,7 @@
     font-size: bold;
     position: absolute;
     text-align: center;
-    bottom: 7px;
+    bottom: 0px;
     box-sizing: border-box;
     background-color: rgba(0, 0, 0, 0.5); 
     border-bottom-left-radius: 25px;
@@ -55,3 +58,62 @@
     text-decoration: underline;
 }
 
+.button-custom {
+    border-radius: 0.5rem; /* rounded-lg */
+    position: relative;
+    width: 9rem; /* w-36 */
+    height: 2.5rem; /* h-10 */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid #22c55e; /* border-green-500 */
+    background-color: #22c55e; /* bg-green-500 */
+  }
+  
+  .button-custom:hover {
+    background-color: #22c55e; /* hover:bg-green-500 */
+  }
+  
+  .button-custom:active {
+    background-color: #22c55e; /* active:bg-green-500 */
+    border-color: #22c55e; /* active:border-green-500 */
+  }
+  
+  .button-custom span {
+    color: #e5e7eb; /* text-gray-200 */
+    font-weight: 600; /* font-semibold */
+    margin-left: 2rem; /* ml-8 */
+    transition: transform 0.3s; /* transition-all duration-300 */
+  }
+  
+  .button-custom:hover span {
+    transform: translateX(5rem); /* group-hover:translate-x-20 */
+  }
+  
+  .button-custom .icon-wrapper {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 2.5rem; /* w-10 */
+    border-radius: 0.5rem; /* rounded-lg */
+    background-color: #22c55e; /* bg-green-500 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, width 0.3s; /* transition-all duration-300 */
+  }
+  
+  .button-custom:hover .icon-wrapper {
+    transform: translateX(0); /* group-hover:translate-x-0 */
+    width: 100%; /* group-hover:w-full */
+  }
+  
+  .button-custom svg {
+    width: 2rem; /* w-8 */
+    color: white; /* text-white */
+  }
+  .div_gestion_campos{
+    display: flex;
+    align-items: center;
+    
+  }
